@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 14
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+allprojects {
+    repositories {
+        maven { url 'http://developer.huawei.com/repo/' }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':mixpush-core')
+    implementation 'com.huawei.hms:push:6.3.0.304'
+}
+apply from: '../maven_public.gradle'
